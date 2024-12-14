@@ -41,7 +41,7 @@ class Calculator
      */
     public function __call(string $name, array $arguments): float
     {
-        return call_user_func_array([$this->calculator, $name], $arguments);
+        return $this->calculator->$name(...$arguments);
     }
 
     /**
@@ -51,7 +51,7 @@ class Calculator
      */
     public static function __callStatic(string $name, array $arguments): float
     {
-        return call_user_func_array([self::getInstance(), $name], $arguments);
+        return self::getInstance()->$name(...$arguments);
     }
 
     /**
